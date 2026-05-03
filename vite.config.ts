@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     lib: {
-      entry: 'src/star.ts',
+      entry: 'src/__target__/star.js',
       formats: ['es'],
       fileName: () => 'star.mjs'
     },

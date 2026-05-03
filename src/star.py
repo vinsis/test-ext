@@ -1,32 +1,41 @@
-import math
+# __pragma__ ('alias', 'dict', 'Object')
+# __pragma__ ('alias', 'list', 'Array')
 
 def compute(args):
+    # Using JS properties directly
     center = args.center
     outerRadius = args.outerRadius
     innerRadius = args.innerRadius
     points = args.points
     
-    numPoints = int(max(3, math.floor(points)))
+    # Using JS Math directly to avoid math module dependency
+    numPoints = Math.max(3, Math.floor(points))
     vertices = []
-    angleStep = math.pi / numPoints
+    angleStep = Math.PI / numPoints
     outputNodes = {}
 
-    for i in range(2 * numPoints):
+    # range() is translated to a clean for-loop by Transcrypt
+    for i in range(int(2 * numPoints)):
         r = outerRadius if i % 2 == 0 else innerRadius
-        angle = i * angleStep - math.pi / 2
+        angle = i * angleStep - Math.PI / 2
+        
+        # Plain JS object creation
         pt = {
             'type': 'Point',
-            'x': center.x + r * math.cos(angle),
-            'y': center.y + r * math.sin(angle)
+            'x': center.x + r * Math.cos(angle),
+            'y': center.y + r * Math.sin(angle)
         }
-        outputNodes['p_{}'.format(i)] = pt
-        vertices.append(pt)
+        # Avoid .format() which uses runtime
+        outputNodes['p_' + str(i)] = pt
+        # Use .push() instead of .append() to avoid runtime
+        vertices.push(pt)
 
-    for i in range(2 * numPoints):
-        outputNodes['l_{}'.format(i)] = {
+    for i in range(int(2 * numPoints)):
+        # Use JS-style indexing and concat
+        outputNodes['l_' + str(i)] = {
             'type': 'Line',
             'p1': vertices[i],
-            'p2': vertices[(i + 1) % (2 * numPoints)]
+            'p2': vertices[(i + 1) % int(2 * numPoints)]
         }
 
     outputNodes['main'] = {
@@ -56,5 +65,4 @@ NStarExt = {
     'compute': compute
 }
 
-# Export for ES6
 __pragma__('js', 'export { NStarExt };')

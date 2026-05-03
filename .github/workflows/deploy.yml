@@ -18,13 +18,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install Transcrypt
-        run: pip install transcrypt
-      - name: Build with Transcrypt
+      - name: Install dependencies
+        run: npm install
+      - name: Build with Transcrypt and Vite
         run: |
-          transcrypt -b -n -e 6 src/star.py
-          mkdir -p dist
-          cp src/__target__/star.js dist/star.mjs
+          pip install transcrypt
+          transcrypt -n -e 6 src/star.py
+          npm run build
       
       # This step uploads the 'dist' folder to GitHub Pages
       - name: Upload artifact
