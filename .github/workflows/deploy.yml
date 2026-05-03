@@ -14,17 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: npm install
-      - name: Build with Transcrypt and Vite
-        run: |
-          pip install transcrypt
-          transcrypt -n -e 6 src/star.py
-          npm run build
+          node-version: 20
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
       
       # This step uploads the 'dist' folder to GitHub Pages
       - name: Upload artifact
@@ -42,4 +37,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
