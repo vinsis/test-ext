@@ -14,12 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
+          python-version: '3.11'
+      - name: Install Transcrypt
+        run: pip install transcrypt
+      - name: Build with Transcrypt
+        run: |
+          transcrypt -b -n -e 6 src/star.py
+          mkdir -p dist
+          cp src/__target__/star.js dist/star.mjs
       
       # This step uploads the 'dist' folder to GitHub Pages
       - name: Upload artifact
