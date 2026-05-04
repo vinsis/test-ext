@@ -20,6 +20,9 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm run build
+        env:
+          VITE_COMMIT_HASH: ${{ github.sha }}
+
       
       # This step uploads the 'dist' folder to GitHub Pages
       - name: Upload artifact
