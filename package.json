@@ -21,6 +21,7 @@
   "homepage": "https://github.com/vinsis/test-ext#readme",
   "devDependencies": {
     "typescript": "^6.0.3",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "@types/node": "^22.13.10"
   }
 }
