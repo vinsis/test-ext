@@ -1,0 +1,33 @@
+{
+  "name": "Geometric Extensions",
+  "version": "1.0.0",
+  "description": "Custom geometric extensions for Geomatic, including N-Pointed Star and Perpendicular Line constructions.",
+  "author": "vinsis",
+  "homepage": "https://github.com/vinsis/test-ext",
+  "extensions": [
+    {
+      "id": "n-star",
+      "name": "N-Pointed Star",
+      "keyword": "n-star",
+      "entry": "star.mjs",
+      "parameters": [
+        { "name": "center", "type": "Point", "default": "p0" },
+        { "name": "outerRadius", "type": "Scalar", "default": 4 },
+        { "name": "innerRadius", "type": "Scalar", "default": 2 },
+        { "name": "points", "type": "Scalar", "default": 5 }
+      ],
+      "outputType": "NStar"
+    },
+    {
+      "id": "perp-line",
+      "name": "Perpendicular Line",
+      "keyword": "perp-line",
+      "entry": "star.mjs",
+      "parameters": [
+        { "name": "point", "type": "Point", "default": "p0" },
+        { "name": "line", "type": "Line", "default": "l0" }
+      ],
+      "outputType": "Line"
+    }
+  ]
+}
