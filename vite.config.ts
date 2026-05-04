@@ -6,7 +6,7 @@ const fileName = commitHash ? `star.${commitHash}.mjs` : 'star.mjs';
 export default defineConfig({
   build: {
     lib: {
-      entry: 'src/star.ts',
+      entry: 'src/index.ts',
       formats: ['es'],
       fileName: () => fileName
     },

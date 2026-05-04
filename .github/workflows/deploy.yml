@@ -1,4 +1,4 @@
-name: Deploy Extension
+name: Deploy Extensions
 
 on:
   push:
@@ -19,7 +19,8 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm install
-      - run: npm run build
+      - name: Build Bundled Extensions
+        run: npm run build
         env:
           VITE_COMMIT_HASH: ${{ github.sha }}
 
